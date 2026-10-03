@@ -1,4 +1,11 @@
 <div align="center">
+
+  ## 参赛赛道与团队名称
+
+  赛道：ai·软件应用
+
+  团队：第三太阳系
+  
   <img src="public/brand/logo.png" alt="驿程牌楼 Logo" width="128" />
   <h1>驿程 · YICHENG</h1>
   <h3>逛长安，有人同行。</h3>
@@ -23,11 +30,7 @@
 
 <a id="overview"></a>
 
-## 参赛赛道与团队名称
 
-赛道：ai·软件应用
-
-团队：第三太阳系
 
 ## 项目介绍
 
