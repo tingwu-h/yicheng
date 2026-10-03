@@ -1,9 +1,27 @@
 <div align="center">
-  <img src="public/brand/logo.png" alt="驿程牌楼 Logo" width="112" />
-  <h1>驿程 · 西安旅游信息与交流平台</h1>
-  <p><strong>逛长安，有人同行</strong></p>
-  <p>发现西安景点，安排每日行程，与朋友一起探索长安。</p>
+  <img src="public/brand/logo.png" alt="驿程牌楼 Logo" width="128" />
+  <h1>驿程 · YICHENG</h1>
+  <h3>逛长安，有人同行。</h3>
+  <p>面向西安游客的旅游信息、行程规划与萌宠陪伴平台</p>
+  <p>
+    <img src="https://img.shields.io/badge/version-vh--0.7-B2372E?style=flat-square" alt="版本 vh-0.7" />
+    <img src="https://img.shields.io/badge/Node.js-24%2B-5E8458?style=flat-square&amp;logo=nodedotjs&amp;logoColor=white" alt="Node.js 24+" />
+    <img src="https://img.shields.io/badge/React-18-2C4A52?style=flat-square&amp;logo=react&amp;logoColor=white" alt="React 18" />
+    <img src="https://img.shields.io/badge/Three.js-3D-655343?style=flat-square&amp;logo=threedotjs&amp;logoColor=white" alt="Three.js 3D 景点" />
+    <img src="https://img.shields.io/badge/SQLite-账号数据-9E792D?style=flat-square&amp;logo=sqlite&amp;logoColor=white" alt="SQLite 账号数据" />
+  </p>
+  <p>
+    <a href="#overview">项目介绍</a> ·
+    <a href="#features">核心功能</a> ·
+    <a href="#highlights">项目特色</a> ·
+    <a href="#quick-start">快速开始</a> ·
+    <a href="#contributors">共创成员</a>
+  </p>
 </div>
+
+![驿程：逛长安，有人同行。景点发现、按天规划、小队同行与秦岭四宝陪伴。](docs/assets/yicheng-banner.svg)
+
+<a id="overview"></a>
 
 ## 项目介绍
 
@@ -20,6 +38,8 @@
 3. **邀请朋友一起游玩**：通过邀请码加入同行小队，共享同一次游玩的任务进度。
 4. **按兴趣探索并留下记录**：选择景点任务，让萌宠陪伴成长；结束游玩后回看行程与同行记录。
 
+<a id="features"></a>
+
 ## 核心功能
 
 | 功能 | 可以做什么 |
@@ -33,6 +53,8 @@
 | 手札与交流 | 收录网页探索发现，浏览社区示例内容，体验本地草稿与记录功能 |
 
 地图连线表示游玩顺序，里程提示使用直线距离。景点票价、开放时间与预约信息请在出行前核实。
+
+<a id="highlights"></a>
 
 ## 项目特色
 
@@ -68,7 +90,9 @@
 
 社区预设内容属于演示资料，手札中的网页探索记录不代表实际到访。
 
-## 本地运行
+<a id="quick-start"></a>
+
+## 快速开始
 
 需要 **Node.js 24 或更新版本**。
 
@@ -152,6 +176,8 @@ docs/           接口、运行说明与版本记录
 - [景点图片来源与许可](public/images/attractions/CREDITS.md)。各模型的来源与许可见对应目录中的 `LICENSE.txt`。
 
 历史文档中的演示机制与运行限制请结合当前版本说明阅读。
+
+<a id="contributors"></a>
 
 ## 共创成员
 
