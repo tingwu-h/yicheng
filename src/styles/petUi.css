@@ -1,0 +1,35 @@
+.pet-ui-v7 { overflow:visible; filter:none; flex-shrink:0; }
+.pet-ui-v7 .pet-figure { transform-box:view-box; transform-origin:160px 306px; animation:v7-breathe 3.8s ease-in-out infinite; }
+.pet-ui-v7 .pet-eyes { transform-box:view-box; transform-origin:160px 139px; animation:v7-blink 5.5s infinite; }
+.pet-ui-v7 .hand-animation-only { display:none; }
+.pet-action-highfive .pet-ui-v7 .hand-animation-only { display:inline; opacity:0; animation:v7-contact .6s ease-in-out .3s both; }
+.pet-ui-v7 .gear-moment { opacity:0; }
+.pet-action:not(.pet-action-idle) .pet-ui-v7 .gear-moment { animation:v7-contact 1.2s ease-in-out; }
+.pet-action:not(.pet-action-idle) .pet-ui-v7 .gear-level-3.costume-back { transform-origin:160px 208px; animation:v7-cape 1.2s ease-in-out; }
+.pet-ui-v7.pet-growth-2 .pet-eyes,.pet-ui-v7.pet-growth-3 .pet-eyes { filter:drop-shadow(0 0 1px #fff6cf); }
+.pet-ui-v7.mood-happy .pet-eyes { animation:none; transform:scaleY(.7); }
+.pet-action-pat .pet-ui-v7:not(.pet-growth-1)[data-pet="pet-qizai"] .pet-figure { animation:v7-cuddle 1.2s ease-in-out; }
+.pet-action-pat .pet-ui-v7:not(.pet-growth-1)[data-pet="pet-zhuhuan"] .pet-arm-left { animation:v7-wing 1.2s ease-in-out; }
+.pet-action-pat .pet-ui-v7:not(.pet-growth-1)[data-pet="pet-jinsihou"] .pet-figure { animation:v7-hop 1.2s ease-in-out; }
+.pet-action-pat .pet-ui-v7:not(.pet-growth-1)[data-pet="pet-lingniu"] .pet-foot-right { animation:pet-step .3s alternate 4; }
+.pet-name-level-3 { background:#fbefd4; border:1px solid #c6a467; border-radius:14px; padding:3px 12px; color:#86602f; }
+.upgrade-compare { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+.upgrade-stage { min-width:0; text-align:center; padding:16px 8px; background:radial-gradient(ellipse at center,#ede5d2,#fffaf1 75%); border:1px solid #e3d3b7; border-radius:18px; }
+.upgrade-stage .pet-action { width:180px; height:190px; max-width:100%; margin:auto; }
+.upgrade-stage svg { width:100%; height:100%; }
+.upgrade-actions { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+.upgrade-progress { width:100%; height:10px; accent-color:#71876c; }
+.upgrade-status { min-height:24px; color:#88603b; }
+.pet-item-thumbnail { width:78px; height:84px; background:#fcf6e9; border-radius:12px; flex-shrink:0; }
+.pet-item-thumbnail svg { width:100%; height:100%; }
+.pet-appearance-select { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:14px; }
+.pet-appearance-select select { padding:7px; border:1px solid #cfbb98; border-radius:8px; background:#fffaf1; }
+@keyframes v7-breathe { 50% { transform:translateY(-2px) scale(1.007,1.013); } }
+@keyframes v7-blink { 0%,42%,47%,100% { transform:scaleY(1); } 44%,45% { transform:scaleY(.1); } }
+@keyframes v7-contact { 0%,100% { opacity:0; } 15%,75% { opacity:1; } }
+@keyframes v7-cape { 50% { transform:skewX(2deg); } }
+@keyframes v7-cuddle { 25%,75% { transform:rotate(3deg); } 50% { transform:rotate(-3deg); } }
+@keyframes v7-wing { 50% { transform:rotate(35deg); } }
+@keyframes v7-hop { 25%,65% { transform:translateY(-9px); } }
+@media(max-width:520px) { .upgrade-compare { gap:8px; } .upgrade-stage { padding:10px 3px; } .upgrade-stage .pet-action { width:140px; height:155px; } .pet-item-thumbnail { width:58px; height:66px; } }
+@media(prefers-reduced-motion:reduce) { .pet-ui-v7 .pet-figure,.pet-ui-v7 .pet-eyes { animation:none; } }

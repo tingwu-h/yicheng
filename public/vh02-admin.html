@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>驿程-vh0.2 官方任务配置</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:960px;margin:36px auto;padding:0 18px;color:#282722;background:#faf8f2}label{display:block;margin:16px 0}input,select,textarea{font:inherit;padding:8px;border:1px solid #b6b0a4;border-radius:6px}input{width:min(100%,460px)}textarea{display:block;width:100%;box-sizing:border-box;height:58vh;font:13px/1.5 Consolas,monospace}button{font:inherit;padding:8px 18px;margin-right:10px;border:0;border-radius:6px;background:#a7352f;color:white;cursor:pointer}button.secondary{background:#435c66}.warn{padding:12px;background:#fff0d9}.status{min-height:28px;color:#9a241f}</style>
+</head><body>
+<h1>驿程-vh0.2 · 官方任务配置</h1>
+<p class="warn">仅供授权运营人员在本地/受控环境使用。配置服务需单独启动并设置后台令牌；本页不保存令牌。公开任务审核、用户进度和照片上传尚未接入此后台。</p>
+<label>后台令牌 <input id="token" type="password" autocomplete="off" placeholder="VH02_ADMIN_TOKEN"></label>
+<label>配置内容 <select id="key"><option value="coreChains">四条官方核心任务链</option><option value="activityTasks">活动限定服饰任务</option><option value="officialTaskConfig">生效开关与提醒参数</option></select></label>
+<button id="load" class="secondary">读取</button><button id="save">校验并保存</button>
+<p id="status" class="status" role="status"></p>
+<textarea id="editor" spellcheck="false" aria-label="配置 JSON 编辑器"></textarea>
+<script type="module">
+const key=document.getElementById('key'),token=document.getElementById('token'),editor=document.getElementById('editor'),status=document.getElementById('status');
+const request=async(method)=>{status.textContent='正在处理…';try{const response=await fetch('/api/vh02/admin/'+key.value,{method,headers:{authorization:'Bearer '+token.value,'content-type':'application/json'},body:method==='PUT'?JSON.stringify(JSON.parse(editor.value)):undefined});const data=await response.json();if(!response.ok)throw Error(data.error||'请求失败');if(method==='GET')editor.value=JSON.stringify(data.value,null,2);status.textContent=method==='GET'?'已读取':'已保存；游客端刷新后读取新配置。'}catch(error){status.textContent=error.message}};
+document.getElementById('load').onclick=()=>request('GET');document.getElementById('save').onclick=()=>request('PUT');
+</script></body></html>

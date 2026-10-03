@@ -1,0 +1,30 @@
+{
+  "name": "yicheng",
+  "private": true,
+  "version": "0.7.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start:local": "node tools/start-local.mjs",
+    "dev:api": "node --env-file-if-exists=.env server/start.mjs",
+    "dev:config:legacy": "node server/vh02Admin.mjs",
+    "start:api": "node --env-file-if-exists=.env server/start.mjs",
+    "admin:grant": "node --env-file-if-exists=.env server/admin.mjs",
+    "backup:api": "node --env-file-if-exists=.env server/backup.mjs",
+    "test:api": "node --test tools/backend.test.mjs",
+    "test": "node tools/calendarDates-selftest.mjs && node tools/model-assets-selftest.mjs && node tools/internal-test-account-selftest.mjs && node tools/pet-upgrade-selftest.mjs && node tools/quest-selftest.mjs && node tools/journey-selftest.mjs && node tools/exploration-selftest.mjs && node tools/vh06-merge-selftest.mjs && node tools/hero-rotation-selftest.mjs && node tools/vh07-selftest.mjs",
+    "test:render": "vite build --ssr tools/vh07-render-smoke.jsx --outDir node_modules/.cache/vh07-smoke && node node_modules/.cache/vh07-smoke/vh07-render-smoke.js",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}

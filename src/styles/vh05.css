@@ -1,0 +1,78 @@
+/* 唐风卷轴与 RPG 任务册：清晰正文优先，纹样保持低对比。 */
+body { background-color: #f6efe2; background-image: radial-gradient(ellipse at 10% 0, #d8b26422, transparent 50%), repeating-linear-gradient(135deg, transparent 0 70px, #bb924407 70px 71px); }
+.card { border-color: #ddceb3; box-shadow: 0 3px 14px #62432206; }
+.rpg-banner { color: #fff3d7; padding: 26px 30px; border: 1px solid #d3aa59; border-radius: 16px; background: radial-gradient(circle at 90% 0, #e5c26924, transparent 60%), linear-gradient(130deg,#692920,#963c2d); box-shadow: inset 0 0 0 5px #ffffff0c; }
+.rpg-banner h1 { color: #fff3d7; margin: 8px 0; }
+.rpg-eyebrow { font-size: 12px; letter-spacing: .2em; color: #efd49f; }
+.route-preview { margin-top: 24px; border-top: 4px solid #ae833d; }
+.route-preview h2 { margin: 12px 0; }
+.route-preview-day { padding: 14px 0; border-top: 1px dashed #d7c5a3; }
+.task-center-head { margin: 24px 0; }
+.task-center-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 20px 0; }
+.task-center-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.task-center-card { border-top: 3px solid #b18d4c; display: flex; flex-direction: column; gap: 12px; }
+.task-center-card h2 { margin-top: 8px; }
+.task-center-card > :last-child { margin-top: auto; }
+.task-center-card p { overflow-wrap: anywhere; }
+.play-pet-roster { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; padding-top: 16px; }
+.walking-pet-cell { display: flex; flex-direction: column; align-items: center; min-width: 0; flex: 1 1 180px; text-align: center; gap: 8px; }
+.pet-home { flex: 0 0 auto; border-bottom: 2px solid #cfaf72; background: radial-gradient(ellipse at bottom,#ecdab066,transparent 70%); position: relative; }
+.pet-home-label { position: absolute; bottom: 12px; left: 0; right: 0; color: #9e855d; font-size: 12px; }
+.walking-pet { position: fixed; z-index: 35; touch-action: none; user-select: none; cursor: grab; border: none; background: transparent; padding: 0; }
+.walking-pet.is-held { cursor: grabbing; filter: drop-shadow(0 6px 7px #65412555); }
+.walking-pet.is-walking { transition: left 2.6s cubic-bezier(.3,.05,.3,1), top 2.6s cubic-bezier(.3,.05,.3,1); }
+.walking-pet.is-held { transition: none; }
+body:has([role="dialog"]) .walking-pet { visibility: hidden; pointer-events: none; }
+.pet-action { width: 100%; height: 100%; position: relative; }
+.pet-controls { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 8px; }
+.pet-controls .btn-sm { padding: 6px 10px; }
+.pet-action-caption { font-size: 12px; color: #796044; min-height: 18px; }
+.pet-arm-right { transform-box: view-box; transform-origin: 82px 65px; }
+.pet-action-wave .pet-arm-right { animation: pet-wave 2s ease-in-out both; }
+.pet-action-pat .pet-head-motion { transform-origin: 60px 60px; animation: pet-nod .6s ease-in-out 3; }
+.pet-action-highfive .pet-arm-right { transform-origin: 82px 65px; animation: pet-five 1.2s ease-in-out both; }
+.pet-action-highfive { animation: pet-hop 1.2s ease-in-out; }
+.pet-action-walk .pet-foot-left { animation: pet-step .35s infinite alternate; }
+.pet-action-walk .pet-foot-right { animation: pet-step .35s infinite alternate-reverse; }
+.pet-action-walk { animation: pet-waddle .7s ease-in-out infinite; }
+.pet-hand { position: absolute; font-size: 34px; pointer-events: none; }
+.pet-hand-pat { top: -5px; left: 50px; animation: pet-stroke .6s 3; }
+.pet-hand-five { left: 74.8%; top: 36.3%; right: auto; line-height: 1; opacity: 0; transform: translate(-50%, -50%); animation: pet-contact .6s ease-in-out .3s both; }
+@keyframes pet-wave {
+  /* 先抬手，再以肩部为支点往返挥动三次，最后自然落手。 */
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(-145deg); }
+  27% { transform: rotate(-122deg); }
+  39% { transform: rotate(-166deg); }
+  51% { transform: rotate(-122deg); }
+  63% { transform: rotate(-166deg); }
+  75% { transform: rotate(-128deg); }
+  84% { transform: rotate(-145deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes pet-nod { 50% { transform: translateY(5px) rotate(7deg); } }
+@keyframes pet-five { 0%,100% { transform: rotate(0); } 20%,80% { transform: rotate(-145deg); } }
+/* 0.3s 出现，0.9s 完全消失；宠物从 0.96s 开始落手。 */
+@keyframes pet-contact { 0%,100% { opacity: 0; transform: translate(-50%, -50%) scale(.9); } 12%,75% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 40% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); } }
+@keyframes pet-waddle { 0%,100% { transform: rotate(-2deg); } 50% { transform: translateY(-3px) rotate(2deg); } }
+.pet-chat-bubble { position: absolute; bottom: 100%; left: 0; width: 136px; padding: 10px; box-sizing: border-box; background: #fff9e9; color: #624322; border: 1px solid #d3aa59; border-radius: 14px 14px 14px 3px; font-size: 12px; line-height: 1.5; pointer-events: none; box-shadow: 0 3px 12px #62432215; }
+.pet-personality-effect { position: absolute; right: 0; top: 20%; font-size: 25px; pointer-events: none; animation: pet-float 1.2s ease-out both; }
+@keyframes pet-float { from { opacity: 0; transform: translateY(12px) scale(.6); } 30% { opacity: 1; } to { opacity: 0; transform: translateY(-28px) rotate(20deg); } }
+.species-pet-jinsihou.pet-action-pat { animation: pet-hop .45s 2; }
+.species-pet-zhuhuan.pet-action-pat { animation: pet-waddle 1.2s; }
+@keyframes pet-hop { 50% { transform: translateY(-7px); } }
+@keyframes pet-step { to { transform: translate(3px,-6px); } }
+@keyframes pet-stroke { 50% { transform: translate(7px,7px) rotate(15deg); } }
+.play-record summary { cursor: pointer; }
+.play-record[open] > p { margin: 14px 0; }
+.profile-pet-panel { min-width: 0; }
+.profile-pet-panel .walking-pet-cell { margin: 16px 0; }
+.profile-pet-slot:disabled { opacity: .65; }
+.task-review-actions { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.custom-task-list .item-row { flex-wrap: wrap; align-items: flex-start; }
+.custom-task-list .grow { min-width: 180px; }
+.review-choice { padding: 14px; background: #f6efd9; border: 1px solid #d1b778; border-radius: 8px; }
+@media (max-width: 1250px) { .profile-layout { grid-template-columns: 180px minmax(0,1fr); } .profile-pet-panel { grid-column: 2; position: static; } }
+@media (max-width: 900px) { .task-center-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .profile-layout { grid-template-columns: minmax(0,1fr); } .profile-pet-panel { grid-column: 1; } }
+@media (max-width: 600px) { .task-center-grid { grid-template-columns: minmax(0,1fr); } .rpg-banner { padding: 20px; } .task-center-filters .segment { flex-wrap: wrap; } }
+@media (prefers-reduced-motion: reduce) { .pet-action-walk, .pet-action-walk * { animation: none !important; } }

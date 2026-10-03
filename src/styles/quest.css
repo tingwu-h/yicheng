@@ -1,0 +1,530 @@
+/* ==========================================================================
+   驿程 · 任务提醒 / 金币 / 萌宠 样式
+   --------------------------------------------------------------------------
+   规则：
+   1. 只使用 tokens.css 里已有的设计变量，不新增色板，保证与现有页面同色系。
+   2. 装饰克制：任务卡与萌宠页允许一点温度，正文区保持中性。
+   3. 全部为新增类名，不改动 global.css / pages.css 里的任何既有规则。
+   ========================================================================== */
+
+/* ==========================================================================
+   一、行前清单页
+   ========================================================================== */
+
+.quest-switch-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-top: var(--sp-5);
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--paper-200);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+}
+
+.scene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+
+/* ---------- 预录项目 ---------- */
+
+.pre-block {
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-6);
+  background: var(--bg-brand-soft);
+  border: 1px solid var(--cinnabar-100);
+  border-radius: var(--r-md);
+}
+
+.pre-block-title {
+  font-size: var(--fs-body-lg);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.pre-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-sm);
+}
+
+.pre-item.compact {
+  padding: var(--sp-2) var(--sp-3);
+}
+
+/* ---------- POI 选择 ---------- */
+
+.poi-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--sp-2);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.poi-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.poi-item:hover {
+  border-color: var(--border-brand);
+}
+
+.poi-item.on {
+  border-color: var(--cinnabar-600);
+  background: var(--cinnabar-50);
+}
+
+.poi-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  background: var(--paper-200);
+  border-radius: var(--r-sm);
+}
+
+.poi-name {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--ink-800);
+  line-height: 1.5;
+}
+
+/* ---------- 任务记录 ---------- */
+
+.record-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-sm);
+}
+
+.record-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: var(--r-pill);
+}
+
+/* ==========================================================================
+   二、任务卡（全站右下角）
+   ========================================================================== */
+
+.task-card {
+  position: fixed;
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  z-index: var(--z-dropdown);
+  width: 372px;
+  max-width: calc(100vw - var(--sp-8));
+  max-height: calc(100vh - var(--sp-16));
+  overflow-y: auto;
+  padding: var(--sp-5);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-top: 3px solid var(--gold-600);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  animation: task-card-in var(--dur-slow) var(--ease-out);
+}
+
+@keyframes task-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+
+.task-close {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--ink-400);
+  background: transparent;
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+
+.task-close:hover {
+  background: var(--paper-200);
+  color: var(--ink-700);
+}
+
+.task-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+
+.task-pet {
+  flex-shrink: 0;
+}
+
+.task-say {
+  font-size: var(--fs-sm);
+  color: var(--daiqing-700);
+  line-height: var(--lh-body);
+  margin-bottom: var(--sp-2);
+}
+
+.task-title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  color: var(--ink-900);
+}
+
+.task-desc {
+  margin-top: var(--sp-3);
+  color: var(--ink-500);
+  line-height: var(--lh-body);
+}
+
+.task-steps {
+  margin: var(--sp-3) 0 0;
+  padding-left: 18px;
+  font-size: var(--fs-sm);
+  color: var(--ink-700);
+  line-height: 1.85;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.task-coin {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--gold-800);
+}
+
+.task-safety {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-xs);
+}
+
+.task-demo-note {
+  margin-top: var(--sp-3);
+  line-height: var(--lh-body);
+}
+
+.task-confirm {
+  margin-top: var(--sp-4);
+  padding: var(--sp-3);
+  background: var(--paper-200);
+  border-radius: var(--r-sm);
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+.task-foot {
+  margin-top: var(--sp-4);
+  line-height: var(--lh-body);
+}
+
+/* ==========================================================================
+   三、萌宠
+   ========================================================================== */
+
+.pet-svg {
+  display: block;
+  overflow: visible;
+}
+
+.pet-avatar {
+  display: inline-grid;
+  place-items: center;
+  background: var(--paper-200);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--sp-5);
+  margin-top: var(--sp-5);
+}
+
+.pet-card {
+  padding: var(--sp-5);
+  text-align: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  transition: box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.pet-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.pet-card.on {
+  border-color: var(--cinnabar-300);
+  box-shadow: var(--shadow-brand);
+}
+
+.pet-card-body {
+  margin-top: var(--sp-3);
+  text-align: left;
+}
+
+.pet-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  margin-top: var(--sp-5);
+}
+
+.pet-detail-preview {
+  flex-shrink: 0;
+  width: 220px;
+  padding: var(--sp-4);
+  background: var(--paper-200);
+  border-radius: var(--r-lg);
+}
+
+.pet-lines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.pet-lines li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-700);
+  line-height: var(--lh-body);
+}
+
+.pet-line-key {
+  flex-shrink: 0;
+  min-width: 40px;
+  font-size: var(--fs-xs);
+  color: var(--ink-400);
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--paper-50);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-sm);
+}
+
+.attraction-task-detail > .card:first-child { margin-bottom: var(--sp-4); }
+.task-detail-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin: var(--sp-4) 0;
+}
+.task-detail-summary span {
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  background: var(--paper-100);
+  font-size: var(--fs-xs);
+}
+.task-detail-row { align-items: flex-start; }
+.task-detail-row .grow { min-width: 0; }
+@media (max-width: 600px) {
+  .task-detail-row { flex-direction: column; align-items: stretch; }
+  .task-detail-row > button { align-self: flex-start; }
+}
+
+/* ==========================================================================
+   四、金币
+   ========================================================================== */
+
+.coin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--gold-800);
+  background: var(--gold-100);
+  border: 1px solid var(--gold-200);
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.coin-badge:hover {
+  background: var(--gold-200);
+}
+
+.coin-badge.ghost {
+  width: 34px;
+  justify-content: center;
+  padding: 0;
+  color: var(--ink-500);
+  background: var(--paper-200);
+  border-color: var(--border-subtle);
+  cursor: pointer;
+}
+
+.coin-amount {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.coin-muted-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--ink-300);
+}
+
+.coin-panel {
+  display: grid;
+  gap: 4px;
+  min-width: 150px;
+  padding: var(--sp-4) var(--sp-5);
+  text-align: right;
+  background: var(--gold-100);
+  border: 1px solid var(--gold-200);
+  border-radius: var(--r-md);
+}
+
+.coin-panel-label {
+  font-size: var(--fs-xs);
+  color: var(--gold-800);
+}
+
+.coin-panel-value {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--gold-800);
+}
+
+.coin-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-sm);
+}
+
+.coin-delta {
+  flex-shrink: 0;
+  min-width: 52px;
+  font-family: var(--font-serif);
+  font-size: var(--fs-body-lg);
+  font-weight: 700;
+  text-align: center;
+}
+
+.coin-delta.plus {
+  color: var(--gold-700);
+}
+
+.coin-delta.minus {
+  color: var(--ink-500);
+}
+
+/* ==========================================================================
+   五、小屏适配
+   --------------------------------------------------------------------------
+   任务卡与小入口在窄屏要收敛，不能挤掉导航与主操作。
+   ========================================================================== */
+
+@media (max-width: 720px) {
+  .task-card {
+    right: var(--sp-3);
+    left: var(--sp-3);
+    bottom: var(--sp-3);
+    width: auto;
+    max-width: none;
+    max-height: 70vh;
+  }
+
+  .coin-badge {
+    height: 30px;
+    padding: 0 8px;
+  }
+
+  .coin-panel {
+    text-align: left;
+  }
+
+  .pet-detail-preview {
+    width: 100%;
+  }
+}
+
+@media (max-width: 460px) {
+  /* 极窄屏：只保留金币数字，避免顶栏拥挤 */
+  .coin-badge .pet-avatar {
+    display: none;
+  }
+}
