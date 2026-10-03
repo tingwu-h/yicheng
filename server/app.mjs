@@ -40,6 +40,7 @@ export function createApp(options = {}) {
     try {
       const url=new URL(req.url,'http://localhost'), path=url.pathname, method=req.method
       const peer=req.socket.remoteAddress ?? 'unknown'
+      const secureTransport = production || (process.env.TRUST_PROXY === '1' && ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(peer) && req.headers['x-forwarded-proto'] === 'https')
       const ip=process.env.TRUST_PROXY==='1' && ['127.0.0.1','::1','::ffff:127.0.0.1'].includes(peer)
         ? String(req.headers['x-real-ip']??peer).slice(0,100) : peer
       rate('all:'+ip,300)
@@ -83,7 +84,7 @@ export function createApp(options = {}) {
           db.prepare('DELETE FROM sessions WHERE expires_at<=?').run(Date.now())
           db.prepare('INSERT INTO sessions VALUES (?,?,?)').run(hash(token),user.id,Date.now()+7*86400000)
         })
-        return write(res,200,{user:publicUser(user)}, {'set-cookie':sessionCookie(token,production,body.remember!==false)})
+        return write(res,200,{user:publicUser(user)}, {'set-cookie':sessionCookie(token,secureTransport,body.remember!==false)})
       }
       const user=currentUser(db,req)
       insist(user,401,'请先登录，之前的本机演示账号不能作为线上账号使用')
@@ -95,7 +96,7 @@ export function createApp(options = {}) {
       if (method==='POST'&&path==='/api/auth/logout') {
         const token=/(?:^|; *)yicheng_session=([a-f0-9]{64})(?:;|$)/.exec(req.headers.cookie??'')?.[1]
         if (token) await transact(()=>db.prepare('DELETE FROM sessions WHERE token_hash=?').run(hash(token)))
-        return write(res,200,{ok:true},{'set-cookie':'yicheng_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'+(production?'; Secure':'')})
+        return write(res,200,{ok:true},{'set-cookie':'yicheng_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'+(secureTransport?'; Secure':'')})
       }
       if (path==='/api/me/app'&&method==='GET') return write(res,200,getDocument(db,user.id,'app'))
       if (path==='/api/me/app'&&method==='PUT') {
