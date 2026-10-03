@@ -9,7 +9,7 @@ data/backend-*
 data/backups/
 
 # Local runtime, private uploads and credentials never belong in Git.
-data/
+/data/
 uploads/
 backups/
 .env.*
