@@ -346,10 +346,6 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="divider" />
-        <p className="source-note">
-          驿程-vh-0.7 · 底图由高德地图提供，里程为直线距离，不用于导航与测距 · 用户内容版权归原作者所有 · <a href={`${import.meta.env.BASE_URL}images/attractions/CREDITS.md`} target="_blank" rel="noreferrer">景点图片来源与许可</a>
-        </p>
       </div>
     </footer>
   )
